@@ -8,17 +8,21 @@
 
     <script>
         $(document).ready(function () {
+            $("input").hide();
             $("#bt1").click(function () {
+
                 $("#div1").load("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/categorias.php");
             });
 
             $("#bt2").click(function () {
-                $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/produtos.php", function (dados, status) {
-                    $("#div1").html(dados + "\nStatus: " + status);
+                $("input").hide();
+                $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/produtos.php", function (dados) {
+                    $("#div1").html(dados);
                 });
             });
 
             $("#bt3").click(function () {
+                $("input").show();
                 var numero = $("input").val();
                 $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/produtos.php",
                     {
@@ -30,8 +34,9 @@
             });
 
             $("#bt4").click(function () {
+                $("input").hide();
                 $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/dados_json.php", function (dados) {
-                    $("#div1").html(dados['campus'] + "<br>"+ dados['cursos'][0] + dados['endereco'] + dados['ies'] + dados['municipio'] + dados['uf']);
+                    $("#div1").html("<br>" + dados['campus'] + "<br>" + "<b>" + dados['cursos'][0] + "</b>" + "<br>" + dados['endereco'] + "<br>" + dados['ies'] + "<br>" + dados['municipio'] + "<br>" + dados['uf']);
                 });
             });
             
@@ -39,7 +44,8 @@
     </script>
 </head>
 <body>
-    <h1>Exercícios Prog</h1>
+    <h1>Exercícios Programação </h1>
+    <p>Clique nos botões abaixo para ver a mágica acontecer! :)</p>
 
     <button id="bt1">Exercício 1</button>
     <button id="bt2">Exercício 2</button>
@@ -51,7 +57,7 @@
     </div>
     <br>
 
-    <input type="number" name="" id="numero">
+    <input type="number" name="" placeholder="Escolha-me!" id="numero">
 
 </body>
 </html>
