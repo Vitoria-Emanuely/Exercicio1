@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exe</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#bt1").click(function () {
+                $("#div1").load("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/categorias.php");
+            });
+
+            $("#bt2").click(function () {
+                $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/produtos.php", function (dados, status) {
+                    $("#div1").html(dados + "\nStatus: " + status);
+                });
+            });
+
+            $("#bt3").click(function () {
+                var numero = $("input").val();
+                $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/produtos.php",
+                    {
+                        categoria: numero
+                    },
+                    function(dados){
+                        $("#div1").html(dados);
+                    });
+            });
+
+            $("#bt4").click(function () {
+                $.get("http://hawkman.fabricadesoftware.ifc.edu.br/~rafael/lojinha/ajax/dados_json.php", function (dados) {
+                    $("#div1").html(dados['campus'] + "<br>"+ dados['cursos'][0] + dados['endereco'] + dados['ies'] + dados['municipio'] + dados['uf']);
+                });
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>Exercícios Prog</h1>
+
+    <button id="bt1">Exercício 1</button>
+    <button id="bt2">Exercício 2</button>
+    <button id="bt3">Exercício 3</button>
+    <button id="bt4">Exercício 4</button>
+
+    <div id="div1">
+
+    </div>
+    <br>
+
+    <input type="number" name="" id="numero">
+
+</body>
+</html>
